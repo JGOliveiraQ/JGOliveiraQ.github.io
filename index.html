@@ -517,18 +517,86 @@
       50%     { box-shadow: 0 0 0 6px rgba(184,0,16,0); }
     }
 
-    /* ─── RESPONSIVE ─── */
+    /* ─── RESPONSIVE TABLET ─── */
     @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.5rem; }
+      .skills-cats { grid-template-columns: 1fr 1fr; }
+      .proj-grid   { grid-template-columns: 1fr 1fr; }
+      .cert-flow   { column-count: 2; }
+    }
+
+    /* ─── RESPONSIVE MOBILE ─── */
+    @media (max-width: 600px) {
+      /* NAV */
+      nav { padding: 1rem 1.2rem; }
       .nav-links { display: none; }
-      #hero { padding: 0 1.5rem 4rem; }
-      #sobre, #habilidades, #experiencia, #projetos, #certificacoes, #contato { padding: 6rem 1.5rem; }
-      .sobre-inner { grid-template-columns: 1fr; }
-      .skills-cats, .proj-grid { grid-template-columns: 1fr; }
-      .cert-flow { column-count: 1; }
-      .exp-row { grid-template-columns: 60px 1fr; }
+      .nav-logo { font-size: .85rem; }
+
+      /* HERO */
+      #hero { padding: 5.5rem 1.2rem 3rem; min-height: 100svh; }
+      .hero-tag { font-size: .62rem; margin-bottom: 2rem; }
+      .hero-name { font-size: clamp(3rem, 16vw, 5rem); }
+      .hero-name-wrap { line-height: .92; }
+      .hero-bottom {
+        flex-direction: column; align-items: flex-start;
+        gap: 1.5rem; margin-top: 2rem;
+      }
+      .hero-sub { font-size: .75rem; }
+      .hero-cta { flex-direction: column; width: 100%; }
+      .mag-btn { width: 100%; justify-content: center; padding: .85rem 1rem; font-size: .82rem; }
+      .hero-scroll-indicator { display: none; }
+
+      /* SECTIONS */
+      #sobre, #habilidades, #formacao,
+      #experiencia, #projetos,
+      #certificacoes, #contato { padding: 4rem 1.2rem; }
+
+      /* SOBRE */
+      .sobre-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-deco { font-size: 7rem; top: -1rem; left: 0; }
+      .s-title { font-size: clamp(2rem, 10vw, 3.5rem); }
+      .about-body { font-size: .85rem; }
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      .ag-n { font-size: 2rem; }
+      .code-body { font-size: .72rem; padding: 1.2rem; }
+
+      /* SKILLS */
+      .skills-marquee-wrap { margin: 2rem -1.2rem; }
+      .marquee-item { font-size: .8rem; padding: .8rem 1.5rem; }
+      .skills-cats { grid-template-columns: 1fr; }
+      .scat { padding: 1.8rem 1.2rem; }
+
+      /* EXPERIÊNCIA / FORMAÇÃO */
+      .exp-row { grid-template-columns: 48px 1fr; gap: 1rem; padding: 1.8rem 0; }
+      .exp-n { font-size: 2.5rem; }
+      .exp-co { font-size: 1.2rem; }
+      .exp-role { font-size: .8rem; }
+      .exp-items li { font-size: .78rem; }
       .exp-date { display: none; }
-      footer { padding: 1.5rem; flex-direction: column; gap: .5rem; }
+
+      /* PROJETOS */
+      .proj-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .pcard { padding: 1.8rem 1.2rem; }
+      .pcard-num { font-size: 3.5rem; }
+      .pcard-title { font-size: 1rem; }
+      .pcard-desc { font-size: .8rem; }
+
+      /* CERTIFICAÇÕES */
+      .cert-flow { column-count: 1; }
+      .citem { padding: 1rem 1.2rem; }
+      .cname { font-size: .82rem; }
+
+      /* CONTATO */
+      .contact-giant { font-size: clamp(2.5rem, 12vw, 5rem); margin-bottom: 2rem; }
+      .contact-row { flex-direction: column; }
+      .clink { width: 100%; text-align: center; }
+
+      /* FOOTER */
+      footer { padding: 1.2rem; flex-direction: column; gap: .4rem; text-align: center; font-size: .65rem; }
+    }
+
+    /* altura real no mobile (evita barra do navegador) */
+    @supports (height: 100svh) {
+      #hero { min-height: 100svh; }
     }
   </style>
 </head>
