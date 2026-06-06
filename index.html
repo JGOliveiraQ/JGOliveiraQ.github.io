@@ -56,8 +56,8 @@
       mix-blend-mode: difference;
     }
     .nav-logo {
-      font-family: var(--mono); font-size: .72rem; font-weight: 400;
-      letter-spacing: .04em; color: var(--white); text-decoration: none;
+      font-family: var(--syne); font-size: 1rem; font-weight: 800;
+      letter-spacing: .18em; color: var(--white);
     }
     .nav-logo em { font-style: normal; color: var(--red); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
@@ -575,14 +575,7 @@
         justify-content: center;
         overflow: hidden;
       }
-      .hero-tag {
-        font-size: .55rem;
-        letter-spacing: .08em;
-        margin-bottom: 1.2rem;
-        white-space: normal;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
+      .hero-tag { display: none; }
       /* 8vw = ~30px em 375px → "GUILHERME" cabe com folga */
       .hero-name {
         font-size: 8vw;
@@ -718,7 +711,7 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="https://jgoliveiraq.is-a.dev/">jgoliveiraq<em>.is-a.dev</em></a>
+  <div class="nav-logo">JG<em>.</em>OLIVEIRA</div>
   <ul class="nav-links">
     <li><a href="#sobre" data-label="Sobre"><span>Sobre</span></a></li>
     <li><a href="#habilidades" data-label="Skills"><span>Skills</span></a></li>
