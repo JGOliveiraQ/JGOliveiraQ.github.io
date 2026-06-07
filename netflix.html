@@ -178,6 +178,48 @@
     }
     #time-lbl { font-family: var(--mono); font-size: .68rem; color: var(--dim); letter-spacing: .04em; }
 
+    /* ── EPISODE LIST OVERLAY ── */
+    #ep-list-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(0,0,0,.85); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .25s;
+    }
+    #ep-list-overlay.open { opacity: 1; pointer-events: all; }
+    .ep-list-panel {
+      background: #0d0d0d; border: 1px solid var(--line);
+      padding: 2.5rem 3rem; min-width: 380px;
+    }
+    .ep-list-title {
+      font-family: var(--mono); font-size: .65rem; letter-spacing: .2em;
+      color: var(--dim); text-transform: uppercase; margin-bottom: 1.8rem;
+    }
+    .ep-list-item {
+      display: flex; align-items: center; gap: 1.2rem;
+      padding: .75rem 0; border-bottom: 1px solid var(--line);
+      cursor: pointer; transition: color .2s; font-family: var(--syne);
+      font-weight: 700; font-size: .88rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--dim);
+    }
+    .ep-list-item:last-child { border-bottom: none; }
+    .ep-list-item:hover { color: var(--wh); }
+    .ep-list-item.active { color: var(--red); }
+    .ep-num {
+      font-family: var(--mono); font-size: .65rem; color: var(--dim);
+      min-width: 2rem;
+    }
+    .ep-list-item.active .ep-num { color: var(--red); }
+    .ep-list-close {
+      position: absolute; top: 1.5rem; right: 2rem;
+      background: none; border: none; color: var(--dim);
+      font-size: 1.4rem; cursor: pointer; transition: color .2s;
+    }
+    .ep-list-close:hover { color: var(--wh); }
+
+    /* intro play cta clicável */
+    .intro-play-area { cursor: pointer; display: inline-block; }
+    .intro-play-area:hover .intro-sub { color: var(--wh); }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeIn { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: translateX(0); } }
     .ep.on { animation: fadeIn .4s ease; }
@@ -216,10 +258,12 @@
         <div class="intro-text">
           <div class="intro-title"><span class="r">B</span>EASTARS</div>
           <div class="intro-flix">NETFLIX</div>
-          <div class="intro-sub">
-            <span class="r">A</span>PERTA O <span class="r">PLAY</span> E<br/>
-            DESCUBRA UM POUCO<br/>
-            SOBRE MIM.
+          <div class="intro-play-area" id="intro-play-area" title="Começar">
+            <div class="intro-sub">
+              <span class="r">A</span>PERTA O <span class="r">PLAY</span> E<br/>
+              DESCUBRA UM POUCO<br/>
+              SOBRE MIM.
+            </div>
           </div>
         </div>
         <!-- Salve a imagem como images/intro.jpg para ativar -->
@@ -365,6 +409,32 @@
 
   </div><!-- /stage -->
 
+  <!-- ────── EPISODE LIST OVERLAY ────── -->
+  <div id="ep-list-overlay">
+    <div class="ep-list-panel" style="position:relative;">
+      <button class="ep-list-close" id="ep-list-close">✕</button>
+      <div class="ep-list-title">// Episódios</div>
+      <div class="ep-list-item" data-ep="0">
+        <span class="ep-num">00</span>INTRO
+      </div>
+      <div class="ep-list-item" data-ep="1">
+        <span class="ep-num">01</span><span class="r">S</span>OBRE MIM
+      </div>
+      <div class="ep-list-item" data-ep="2">
+        <span class="ep-num">02</span><span class="r">F</span>ORMAÇÃO
+      </div>
+      <div class="ep-list-item" data-ep="3">
+        <span class="ep-num">03</span><span class="r">E</span>XPERIÊNCIAS
+      </div>
+      <div class="ep-list-item" data-ep="4">
+        <span class="ep-num">04</span><span class="r">H</span>ABILIDADES
+      </div>
+      <div class="ep-list-item" data-ep="5">
+        <span class="ep-num">05</span><span class="r">R</span>EDE SOCIAL
+      </div>
+    </div>
+  </div>
+
   <!-- ────── PLAYER BAR ────── -->
   <div id="player">
     <div id="prog-track"><div id="prog-fill"></div></div>
@@ -372,6 +442,7 @@
       <button class="cbtn" id="pp-btn" title="Play / Pause">▶</button>
       <span id="ep-label"></span>
       <span id="time-lbl">0:00</span>
+      <button class="cbtn" id="list-btn" title="Lista de episódios">≡</button>
       <button class="cbtn" id="next-btn" title="Próximo episódio">▶▶|</button>
       <button class="cbtn" id="home-btn" title="Voltar ao portfólio" style="display:none;">🏠</button>
     </div>
@@ -396,13 +467,16 @@
   let elapsed  = 0;
   let ticker   = null;
 
-  const $pp    = document.getElementById('pp-btn');
-  const $next  = document.getElementById('next-btn');
-  const $home  = document.getElementById('home-btn');
-  const $fill  = document.getElementById('prog-fill');
-  const $label = document.getElementById('ep-label');
-  const $time  = document.getElementById('time-lbl');
-  const $back  = document.getElementById('back-btn');
+  const $pp      = document.getElementById('pp-btn');
+  const $next    = document.getElementById('next-btn');
+  const $home    = document.getElementById('home-btn');
+  const $fill    = document.getElementById('prog-fill');
+  const $label   = document.getElementById('ep-label');
+  const $time    = document.getElementById('time-lbl');
+  const $back    = document.getElementById('back-btn');
+  const $listBtn = document.getElementById('list-btn');
+  const $overlay = document.getElementById('ep-list-overlay');
+  const $close   = document.getElementById('ep-list-close');
 
   function showEp(idx) {
     document.querySelectorAll('.ep').forEach(e => e.classList.remove('on'));
@@ -429,12 +503,43 @@
     $next.style.display = isLast ? 'none' : '';
     $home.style.display = isLast ? ''     : 'none';
 
+    // ≡ lista: ocultar no intro
+    $listBtn.style.display = cur === 0 ? 'none' : '';
+
     // Play/pause icon
     $pp.textContent = playing ? '⏸' : '▶';
 
     // Back btn — aparece só nos episódios (não no intro)
     $back.classList.toggle('show', cur > 0);
+
+    // Highlight episódio ativo na lista
+    document.querySelectorAll('.ep-list-item').forEach(el => {
+      el.classList.toggle('active', Number(el.dataset.ep) === cur);
+    });
   }
+
+  // ── EPISODE LIST ──
+  function openList() {
+    $overlay.classList.add('open');
+    if (playing) pause();
+  }
+  function closeList() { $overlay.classList.remove('open'); }
+
+  $listBtn.addEventListener('click', openList);
+  $close.addEventListener('click', closeList);
+  $overlay.addEventListener('click', e => { if (e.target === $overlay) closeList(); });
+
+  document.querySelectorAll('.ep-list-item').forEach(el => {
+    el.addEventListener('click', () => {
+      const idx = Number(el.dataset.ep);
+      closeList();
+      showEp(idx);
+      if (idx > 0) startPlay();
+    });
+  });
+
+  // Intro clicável para começar
+  document.getElementById('intro-play-area').addEventListener('click', startPlay);
 
   function startTick() {
     clearInterval(ticker);
