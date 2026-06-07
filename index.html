@@ -132,6 +132,15 @@
       animation: blink 1s infinite;
     }
     .hero-cta { display: flex; gap: 1.2rem; }
+    .nf-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      margin-top: 1rem; padding: .55rem 1.3rem;
+      font-family: var(--mono); font-size: .68rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase; text-decoration: none;
+      color: var(--red); border: 1px solid var(--red);
+      transition: background .2s, color .2s;
+    }
+    .nf-btn:hover { background: var(--red); color: var(--bg); }
     .mag-btn {
       font-family: var(--syne); font-weight: 700;
       font-size: .85rem; letter-spacing: .12em; text-transform: uppercase;
@@ -748,6 +757,7 @@
       <a href="#contato" class="mag-btn mag-btn-fill shake-hover">Me Contrate</a>
       <a href="#projetos" class="mag-btn mag-btn-ghost shake-hover">Projetos</a>
     </div>
+    <a href="netflix.html" class="nf-btn">▶ Ver na Netflix</a>
   </div>
   <div class="hero-scroll-indicator">
     <div class="scroll-line"></div>
