@@ -226,20 +226,64 @@
 
     /* ── MOBILE ── */
     @media (max-width: 700px) {
-      .ep { padding: 4.5rem 1.4rem 1rem; }
-      #ep0 .inner { flex-direction: column; gap: 2rem; }
-      #ep0 .img-box { width: 100%; }
-      .split { flex-direction: column; gap: 1.5rem; }
-      .split .img-box { width: 100%; }
-      .intro-title { font-size: 15vw; }
-      .intro-flix { font-size: 5vw; }
+
+      /* PLAYER BAR */
+      #player { padding: 0 1rem; height: 68px; gap: .35rem; }
+      #ep-label { font-size: .6rem; letter-spacing: .07em; }
+      #time-lbl { display: none; }
+      .ctrl-row { gap: .8rem; }
+      #pp-btn { font-size: 1rem; }
+
+      /* BACK BTN */
+      #back-btn { left: 1rem; top: 1rem; font-size: 1.2rem; }
+
+      /* TODAS AS TELAS — padding menor pra caber tudo na altura */
+      .ep { padding: 3.5rem 1.2rem .8rem; }
+
+      /* EPISODE LIST OVERLAY */
+      .ep-list-panel { width: 88vw; min-width: auto; padding: 1.8rem 1.4rem; }
+      .ep-list-item { font-size: .8rem; padding: .6rem 0; gap: .9rem; }
+      .ep-list-title { margin-bottom: 1.2rem; }
+      .ep-list-close { top: 1rem; right: 1.2rem; }
+
+      /* ── INTRO ── */
+      #ep0 .inner { flex-direction: column; gap: 1.2rem; align-items: flex-start; }
+      #ep0 .img-box { width: 100%; aspect-ratio: 16/9; } /* 16/9 = mais baixa que 4/3 */
+      .intro-title { font-size: 13vw; }
+      .intro-flix  { font-size: 5.5vw; margin-bottom: 1rem; }
+      .intro-sub   { font-size: 3.4vw; line-height: 1.7; }
+
+      /* ── EP 1–3 SPLIT ── */
+      .split { flex-direction: column; gap: .9rem; }
+      .split .img-box { width: 100%; aspect-ratio: 16/9; }
+      .ep-p { font-size: 3vw; line-height: 1.7; margin-bottom: 1rem; }
+      .ep-h { font-size: 3.2vw; }
+      .ep-small { font-size: 2.8vw !important; }
+      .logo-row { margin-bottom: .9rem; gap: .6rem; }
+      .logo-text { font-size: 2.8vw; }
+      .exp-block { gap: .9rem; margin-bottom: 1.2rem; }
+      .exp-badge { font-size: .72rem; padding: .2rem .4rem; }
+
+      /* ── EP4 SKILLS ── */
       #ep4 .skills-wrap { flex-direction: column; }
-      .sk-col:first-child { border-right: none; border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
       .sk-col { padding: 0; }
-      .social-row { gap: 1.5rem; }
-      #player { padding: 0 1.2rem; }
-      #ep5 .img-box { width: 100%; aspect-ratio: 16/8; }
-      #back-btn { left: 1.2rem; }
+      .sk-col:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 1rem; margin-bottom: 1rem;
+      }
+      .sk-title { font-size: 4vw; margin-bottom: .9rem; }
+      .sk-item { font-size: 3.5vw; margin-bottom: .7rem; }
+
+      /* ── EP5 FINAL ── */
+      .obrigado { font-size: 6vw; margin-bottom: 1rem; }
+      #ep5 .img-box {
+        width: 100%; aspect-ratio: 16/7;
+        margin-bottom: 1.4rem;
+      }
+      .social-row { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+      .social-icon { width: 1.6rem; height: 1.6rem; }
+      .social-label { font-size: .58rem; }
     }
   </style>
 </head>
