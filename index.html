@@ -181,12 +181,12 @@
       position: absolute; left: 0; right: 0; height: 40px;
       background: linear-gradient(to bottom, var(--red), rgba(184,0,16,.15));
       top: -40px;
-      animation: scrollDrop 3s cubic-bezier(.4,0,.6,1) infinite;
+      animation: scrollDrop 2s cubic-bezier(.4,0,.6,1) infinite;
     }
     .scroll-arrow {
       font-family: var(--mono); color: var(--red);
       font-size: 1.05rem; line-height: 1;
-      animation: arrowPull 3s ease infinite;
+      animation: arrowPull 2s ease infinite;
     }
 
     /* ─── SECTION LABEL ─── */
@@ -208,7 +208,8 @@
     #localidade { padding: 9rem 3rem; }
     .city-slider-wrap {
       position: relative; overflow: hidden; margin-top: 4rem;
-      height: 520px; border: 1px solid var(--line);
+      height: 620px; border: 1px solid var(--line);
+      border-radius: 16px;
     }
     .city-slide {
       position: absolute; inset: 0;
@@ -243,6 +244,7 @@
       color: var(--white); font-family: var(--mono); font-size: 1rem;
       padding: .85rem 1.3rem; cursor: pointer; z-index: 10;
       transition: background .2s, border-color .2s; line-height: 1;
+      border-radius: 8px;
     }
     .slide-btn:hover { background: var(--red); border-color: var(--red); }
     .slide-prev { left: 1.5rem; }
@@ -1250,7 +1252,7 @@ function goToSlide(n) {
   citySlides[curSlide].classList.add('active');
   cityDots[curSlide].classList.add('active');
 }
-function resetTimer() { clearInterval(slideTimer); slideTimer = setInterval(() => goToSlide(curSlide + 1), 4000); }
+function resetTimer() { clearInterval(slideTimer); slideTimer = setInterval(() => goToSlide(curSlide + 1), 5000); }
 
 document.querySelector('.slide-prev').addEventListener('click', () => { goToSlide(curSlide - 1); resetTimer(); });
 document.querySelector('.slide-next').addEventListener('click', () => { goToSlide(curSlide + 1); resetTimer(); });
