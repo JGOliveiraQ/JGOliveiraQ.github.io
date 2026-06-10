@@ -247,30 +247,6 @@
     /* ─── SKILLS ─── */
     #habilidades { padding: 9rem 3rem; background: var(--card); overflow: hidden; }
     .skills-header { margin-bottom: 5rem; }
-    .skills-marquee-wrap {
-      position: relative; overflow: hidden;
-      margin: 3rem -3rem 4rem;
-      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    }
-    .skills-marquee {
-      display: flex; gap: 0;
-      animation: marquee 20s linear infinite;
-      white-space: nowrap;
-    }
-    .skills-marquee-wrap:hover .skills-marquee { animation-play-state: paused; }
-    .marquee-item {
-      display: inline-flex; align-items: center; gap: 1.2rem;
-      padding: 1rem 2.5rem; border-right: 1px solid var(--line);
-      font-family: var(--syne); font-weight: 700;
-      font-size: 1rem; letter-spacing: .1em; text-transform: uppercase;
-      color: var(--dim); white-space: nowrap; transition: color .2s;
-      flex-shrink: 0;
-    }
-    .marquee-item:hover { color: var(--white); }
-    .marquee-item .pct {
-      font-family: var(--mono); font-size: .7rem; color: var(--red);
-    }
-    .marquee-sep { color: var(--red); font-size: 1.2rem; }
 
     .skills-cats {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -463,6 +439,16 @@
       transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
     }
     .reveal-left.in { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0; transform: translateX(40px);
+      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal-right.in { opacity: 1; transform: translateX(0); }
+    .d1 { transition-delay: .12s; }
+    .d2 { transition-delay: .24s; }
+    .d3 { transition-delay: .36s; }
+    .d4 { transition-delay: .48s; }
+    .d5 { transition-delay: .60s; }
 
     /* ─── KEYFRAMES ─── */
     @keyframes fadeSlide {
@@ -488,11 +474,7 @@
       from { transform: translateX(-100%); }
       to   { transform: translateX(200%); }
     }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    @keyframes scrollPulse {
+@keyframes scrollPulse {
       0%,100% { opacity: 1; transform: scaleY(1); }
       50%     { opacity: .3; transform: scaleY(.6); }
     }
@@ -619,8 +601,6 @@
       .code-body { padding: .9rem; font-size: .65rem; line-height: 1.8; }
 
       /* SKILLS */
-      .skills-marquee-wrap { margin: 1.8rem -1.2rem; }
-      .marquee-item { font-size: .68rem; padding: .6rem 1rem; }
       .skills-cats { grid-template-columns: 1fr; }
       .scat { padding: 1.2rem 1rem; }
       .scat-name { font-size: .85rem; margin-bottom: 1rem; }
@@ -694,9 +674,6 @@
   </style>
 </head>
 <body>
-
-<!-- BG SWEEP BANDS -->
-<div id="sweep-wrap" style="position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;"></div>
 
 <!-- CANVAS PARTICLES -->
 <canvas id="cv"></canvas>
@@ -780,7 +757,7 @@
         <div class="ag-cell"><div class="ag-n" data-target="1">0</div><div class="ag-l">ANO DE XP</div></div>
       </div>
     </div>
-    <div class="reveal">
+    <div class="reveal-right">
       <div class="code-wrap">
         <div class="code-scan"></div>
         <div class="code-header">
@@ -812,37 +789,8 @@
     <h2 class="s-title">O QUE EU<br/><span class="r">SEI FAZER</span></h2>
   </div>
 
-  <!-- MARQUEE TICKER -->
-  <div class="skills-marquee-wrap" aria-hidden="true">
-    <div class="skills-marquee">
-      <!-- duplicado para loop infinito -->
-      <span class="marquee-item">Python <span class="pct">75%</span></span>
-      <span class="marquee-item">JavaScript <span class="pct">70%</span></span>
-      <span class="marquee-item">TypeScript <span class="pct">55%</span></span>
-      <span class="marquee-item">SQL <span class="pct">65%</span></span>
-      <span class="marquee-item">HTML/CSS <span class="pct">80%</span></span>
-      <span class="marquee-item">React <span class="pct">50%</span></span>
-      <span class="marquee-item">Git/CI-CD <span class="pct">75%</span></span>
-      <span class="marquee-item">Prompt Eng <span class="pct">80%</span></span>
-      <span class="marquee-item">Cybersec <span class="pct">60%</span></span>
-      <span class="marquee-item">Power BI <span class="pct">55%</span></span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item">Python <span class="pct">75%</span></span>
-      <span class="marquee-item">JavaScript <span class="pct">70%</span></span>
-      <span class="marquee-item">TypeScript <span class="pct">55%</span></span>
-      <span class="marquee-item">SQL <span class="pct">65%</span></span>
-      <span class="marquee-item">HTML/CSS <span class="pct">80%</span></span>
-      <span class="marquee-item">React <span class="pct">50%</span></span>
-      <span class="marquee-item">Git/CI-CD <span class="pct">75%</span></span>
-      <span class="marquee-item">Prompt Eng <span class="pct">80%</span></span>
-      <span class="marquee-item">Cybersec <span class="pct">60%</span></span>
-      <span class="marquee-item">Power BI <span class="pct">55%</span></span>
-      <span class="marquee-sep">✦</span>
-    </div>
-  </div>
-
   <div class="skills-cats">
-    <div class="scat reveal">
+    <div class="scat reveal-left d1">
       <div class="scat-name">// Linguagens</div>
       <div class="sitem"><div class="srow"><span>Python</span><span class="spct">75%</span></div><div class="sbar"><div class="sfill" data-pct="75"></div></div></div>
       <div class="sitem"><div class="srow"><span>JavaScript</span><span class="spct">70%</span></div><div class="sbar"><div class="sfill" data-pct="70"></div></div></div>
@@ -850,14 +798,14 @@
       <div class="sitem"><div class="srow"><span>SQL</span><span class="spct">65%</span></div><div class="sbar"><div class="sfill" data-pct="65"></div></div></div>
       <div class="sitem"><div class="srow"><span>Java</span><span class="spct">35%</span></div><div class="sbar"><div class="sfill" data-pct="35"></div></div></div>
     </div>
-    <div class="scat reveal">
+    <div class="scat reveal d2">
       <div class="scat-name">// Web & Frontend</div>
       <div class="sitem"><div class="srow"><span>HTML & CSS</span><span class="spct">80%</span></div><div class="sbar"><div class="sfill" data-pct="80"></div></div></div>
       <div class="sitem"><div class="srow"><span>React / Next.js</span><span class="spct">50%</span></div><div class="sbar"><div class="sfill" data-pct="50"></div></div></div>
       <div class="sitem"><div class="srow"><span>APIs REST</span><span class="spct">65%</span></div><div class="sbar"><div class="sfill" data-pct="65"></div></div></div>
       <div class="sitem"><div class="srow"><span>Flask / Node.js</span><span class="spct">60%</span></div><div class="sbar"><div class="sfill" data-pct="60"></div></div></div>
     </div>
-    <div class="scat reveal">
+    <div class="scat reveal-right d3">
       <div class="scat-name">// DevOps & Tools</div>
       <div class="sitem"><div class="srow"><span>Git & GitHub</span><span class="spct">75%</span></div><div class="sbar"><div class="sfill" data-pct="75"></div></div></div>
       <div class="sitem"><div class="srow"><span>CI/CD</span><span class="spct">60%</span></div><div class="sbar"><div class="sfill" data-pct="60"></div></div></div>
@@ -875,7 +823,7 @@
     <h2 class="s-title">EXPERIÊNCIA<br/><span class="r">PROFISSIONAL</span></h2>
   </div>
   <div class="exp-list">
-    <div class="exp-row">
+    <div class="exp-row reveal-left">
       <div class="exp-n">01</div>
       <div>
         <div class="exp-co">AGÊNCIA CASTELO</div>
@@ -888,7 +836,7 @@
       </div>
       <div class="exp-date exp-active"><span class="pulse"></span>MAR/26 — ATUAL</div>
     </div>
-    <div class="exp-row" style="border-bottom: 1px solid var(--line);">
+    <div class="exp-row reveal-right d2" style="border-bottom: 1px solid var(--line);">
       <div class="exp-n">02</div>
       <div>
         <div class="exp-co">McDONALD'S</div>
@@ -911,7 +859,7 @@
     <h2 class="s-title">FORMAÇÃO<br/><span class="r">ACADÊMICA</span></h2>
   </div>
   <div class="exp-list">
-    <div class="exp-row">
+    <div class="exp-row reveal-left">
       <div class="exp-n">01</div>
       <div>
         <div class="exp-co">SENAC · EMBARQUE DIGITAL</div>
@@ -923,7 +871,7 @@
       </div>
       <div class="exp-date exp-active"><span class="pulse"></span>JUN/25 — MAR/27</div>
     </div>
-    <div class="exp-row" style="border-bottom: 1px solid var(--line);">
+    <div class="exp-row reveal-right d2" style="border-bottom: 1px solid var(--line);">
       <div class="exp-n">02</div>
       <div>
         <div class="exp-co">FACULDADE OURO MODERNO</div>
@@ -946,21 +894,21 @@
     <h2 class="s-title">PROJETOS<br/><span class="r">EM DESTAQUE</span></h2>
   </div>
   <div class="proj-grid">
-    <div class="pcard reveal">
+    <div class="pcard reveal-left d1">
       <div class="pcard-glow"></div>
       <div class="pcard-num">01</div>
       <div class="pcard-title">Projeto Bigu</div>
       <div class="pcard-desc">Aplicativo de mobilidade urbana voltado à RMR. Participação em planejamento, identidade visual e arquitetura tecnológica.</div>
       <div class="pcard-tags"><span class="ptag">Mobilidade</span><span class="ptag">UX/UI</span><span class="ptag">Arquitetura</span></div>
     </div>
-    <div class="pcard reveal">
+    <div class="pcard reveal d2">
       <div class="pcard-glow"></div>
       <div class="pcard-num">02</div>
       <div class="pcard-title">Automações TI</div>
       <div class="pcard-desc">Scripts e soluções automatizadas na Agência Castelo — manipulação de banco de dados, processos digitais e integrações.</div>
       <div class="pcard-tags"><span class="ptag">Python</span><span class="ptag">SQL</span><span class="ptag">Automação</span></div>
     </div>
-    <div class="pcard reveal">
+    <div class="pcard reveal-right d3">
       <div class="pcard-glow"></div>
       <div class="pcard-num">03</div>
       <div class="pcard-title">Pesquisa em CyberSec</div>
@@ -1050,42 +998,6 @@ function mainLoop(time){
 }
 requestAnimationFrame(mainLoop);
 
-/* ── BG SWEEP LINES ── */
-const sweepWrap = document.getElementById('sweep-wrap');
-
-function spawnLine(durationMs, color, top) {
-  const b = document.createElement('div');
-  const len = 120 + Math.random() * 200;
-  b.style.cssText = `
-    position:absolute;
-    top:${top}px; left:-${len+10}px;
-    width:${len}px; height:2px;
-    background: linear-gradient(90deg, transparent, ${color}, transparent);
-    will-change: transform;
-  `;
-  sweepWrap.appendChild(b);
-  const dist = window.innerWidth + len + 20;
-  b.animate(
-    [{ transform:'translateX(0)' }, { transform:`translateX(${dist}px)` }],
-    { duration: durationMs, easing: 'linear', fill: 'forwards' }
-  ).onfinish = () => b.remove();
-}
-
-function randomTop() { return Math.random() * window.innerHeight; }
-
-function fireSweepSequence() {
-  // rápidas
-  spawnLine(200, 'rgba(184,0,16,0.7)', randomTop());
-  setTimeout(() => spawnLine(160, 'rgba(255,255,255,0.5)', randomTop()), 120);
-  setTimeout(() => spawnLine(190, 'rgba(184,0,16,0.6)', randomTop()), 230);
-  setTimeout(() => spawnLine(170, 'rgba(255,255,255,0.35)', randomTop()), 340);
-  // devagar
-  setTimeout(() => spawnLine(1500, 'rgba(184,0,16,0.85)', randomTop()), 600);
-}
-
-fireSweepSequence();
-setInterval(fireSweepSequence, 3500);
-
 /* ── HAMBURGER MENU ── */
 const ham = document.getElementById('ham');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -1165,7 +1077,7 @@ document.querySelectorAll('.pcard').forEach(card=>{
 const obs=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
 }),{threshold:.12});
-document.querySelectorAll('.reveal,.reveal-left,.exp-row,.citem').forEach(el=>obs.observe(el));
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.exp-row,.citem').forEach(el=>obs.observe(el));
 
 /* ── SKILL BARS ── */
 const barObs=new IntersectionObserver(es=>es.forEach(e=>{
