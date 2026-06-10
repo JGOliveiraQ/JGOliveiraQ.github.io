@@ -1075,9 +1075,10 @@ document.querySelectorAll('.pcard').forEach(card=>{
 
 /* ── SCROLL REVEAL ── */
 const obs=new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+  if(e.isIntersecting) e.target.classList.add('in');
+  else e.target.classList.remove('in');
 }),{threshold:.12});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.exp-row,.citem').forEach(el=>obs.observe(el));
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.exp-row').forEach(el=>obs.observe(el));
 
 /* ── SKILL BARS ── */
 const barObs=new IntersectionObserver(es=>es.forEach(e=>{
@@ -1097,6 +1098,7 @@ const ag=document.querySelector('.about-grid'); if(ag) numObs.observe(ag);
 /* ── CERT STAGGER ── */
 const certObs=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting) document.querySelectorAll('.citem').forEach((c,i)=>setTimeout(()=>c.classList.add('in'),i*60));
+  else document.querySelectorAll('.citem').forEach(c=>c.classList.remove('in'));
 }),{threshold:.05});
 const cf=document.querySelector('.cert-flow'); if(cf) certObs.observe(cf);
 
