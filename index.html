@@ -163,15 +163,29 @@
     .mag-btn-ghost:hover::before { transform: translateY(0); }
 
     .hero-scroll-indicator {
-      writing-mode: vertical-rl; font-family: var(--mono);
-      font-size: .65rem; letter-spacing: .18em; color: var(--dim);
-      position: absolute; right: 3rem; bottom: 5rem;
-      display: flex; flex-direction: column; align-items: center; gap: 1rem;
+      position: absolute; right: 3rem; bottom: 4.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: .65rem;
+      z-index: 10;
     }
-    .scroll-line {
-      width: 1px; height: 60px;
-      background: linear-gradient(var(--red), transparent);
-      animation: scrollPulse 2s infinite;
+    .scroll-label {
+      writing-mode: vertical-rl; font-family: var(--mono);
+      font-size: .58rem; letter-spacing: .22em; color: var(--dim);
+      text-transform: uppercase;
+    }
+    .scroll-track {
+      width: 1px; height: 80px;
+      background: #1c1c1c; position: relative; overflow: hidden;
+    }
+    .scroll-fill {
+      position: absolute; left: 0; right: 0; height: 40px;
+      background: linear-gradient(to bottom, var(--red), rgba(184,0,16,.15));
+      top: -40px;
+      animation: scrollDrop 3s cubic-bezier(.4,0,.6,1) infinite;
+    }
+    .scroll-arrow {
+      font-family: var(--mono); color: var(--red);
+      font-size: 1.05rem; line-height: 1;
+      animation: arrowPull 3s ease infinite;
     }
 
     /* ─── SECTION LABEL ─── */
@@ -527,9 +541,19 @@
       from { transform: translateX(-100%); }
       to   { transform: translateX(200%); }
     }
-@keyframes scrollPulse {
-      0%,100% { opacity: 1; transform: scaleY(1); }
-      50%     { opacity: .3; transform: scaleY(.6); }
+    @keyframes scrollDrop {
+      0%   { top: -40px; }
+      8%   { top: -40px; }
+      62%  { top: 80px;  }
+      63%  { top: -40px; }
+      100% { top: -40px; }
+    }
+    @keyframes arrowPull {
+      0%,6%  { transform: translateY(0);    opacity: .3; }
+      35%    { transform: translateY(10px); opacity: 1;  }
+      64%    { transform: translateY(10px); opacity: .4; }
+      80%    { transform: translateY(0);    opacity: .3; }
+      100%   { transform: translateY(0);    opacity: .3; }
     }
     @keyframes shake {
       0%,100% { transform: translate(0,0) rotate(0deg); }
@@ -624,7 +648,15 @@
         font-size: .78rem;
         letter-spacing: .12em;
       }
-      .hero-scroll-indicator { display: none; }
+      .hero-scroll-indicator {
+        display: flex;
+        right: auto; left: 50%; transform: translateX(-50%);
+        bottom: 1.6rem; flex-direction: column;
+      }
+      .scroll-label { writing-mode: horizontal-tb; font-size: .62rem; }
+      .scroll-track { height: 55px; }
+      .scroll-fill  { height: 28px; }
+      .scroll-arrow { font-size: 1.3rem; }
 
       /* SEÇÕES */
       #sobre, #habilidades, #experiencia, #formacao,
@@ -790,8 +822,9 @@
     </div>
   </div>
   <div class="hero-scroll-indicator">
-    <div class="scroll-line"></div>
-    SCROLL
+    <span class="scroll-label">SCROLL</span>
+    <div class="scroll-track"><div class="scroll-fill"></div></div>
+    <span class="scroll-arrow">↓</span>
   </div>
 </section>
 <hr/>
