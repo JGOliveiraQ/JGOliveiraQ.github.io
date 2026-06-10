@@ -189,6 +189,59 @@
     /* ─── DIVIDER ─── */
     hr { border: none; border-top: 1px solid var(--line); }
 
+    /* ─── LOCALIDADE SLIDER ─── */
+    #localidade { padding: 9rem 3rem; }
+    .city-slider-wrap {
+      position: relative; overflow: hidden; margin-top: 4rem;
+      height: 520px; border: 1px solid var(--line);
+    }
+    .city-slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity .7s ease; pointer-events: none;
+    }
+    .city-slide.active { opacity: 1; pointer-events: all; }
+    .city-slide img {
+      width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.65);
+    }
+    .city-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,.92) 0%, rgba(8,8,8,.15) 55%, transparent 100%);
+      display: flex; align-items: flex-end; padding: 3rem;
+    }
+    .city-tag {
+      font-family: var(--mono); font-size: .63rem; letter-spacing: .22em;
+      color: var(--red); text-transform: uppercase; display: block; margin-bottom: .55rem;
+    }
+    .city-name {
+      font-family: var(--syne); font-weight: 800;
+      font-size: clamp(2rem, 4.5vw, 4rem);
+      letter-spacing: -.02em; line-height: .9; margin-bottom: 1rem;
+    }
+    .city-name .r { color: var(--red); }
+    .city-desc {
+      font-family: var(--body); font-size: clamp(.82rem, 1.1vw, .94rem);
+      color: #bbb; line-height: 1.85; max-width: 500px;
+    }
+    .slide-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(8,8,8,.75); border: 1px solid var(--line);
+      color: var(--white); font-family: var(--mono); font-size: 1rem;
+      padding: .85rem 1.3rem; cursor: pointer; z-index: 10;
+      transition: background .2s, border-color .2s; line-height: 1;
+    }
+    .slide-btn:hover { background: var(--red); border-color: var(--red); }
+    .slide-prev { left: 1.5rem; }
+    .slide-next { right: 1.5rem; }
+    .slide-dots {
+      position: absolute; bottom: 1.6rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: .6rem; z-index: 10;
+    }
+    .slide-dot {
+      width: 22px; height: 2px; background: rgba(255,255,255,.2);
+      cursor: pointer; transition: background .25s, width .25s;
+    }
+    .slide-dot.active { background: var(--red); width: 36px; }
+
     /* ─── SOBRE ─── */
     #sobre { padding: 9rem 3rem; }
     .sobre-inner {
@@ -600,6 +653,16 @@
       .code-wrap { overflow-x: auto; }
       .code-body { padding: .9rem; font-size: .65rem; line-height: 1.8; }
 
+      /* LOCALIDADE */
+      #localidade { padding: 2.8rem 1.2rem; }
+      .city-slider-wrap { height: 360px; }
+      .city-overlay { padding: 1.4rem; }
+      .city-name { font-size: 7.5vw; }
+      .city-desc { font-size: .75rem; }
+      .slide-btn { padding: .6rem .9rem; font-size: .85rem; }
+      .slide-prev { left: .6rem; }
+      .slide-next { right: .6rem; }
+
       /* SKILLS */
       .skills-cats { grid-template-columns: 1fr; }
       .scat { padding: 1.2rem 1rem; }
@@ -777,6 +840,46 @@
           <div>}<span class="op">;</span></div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+<hr/>
+
+<!-- ─── LOCALIDADE ─── -->
+<section id="localidade">
+  <div class="reveal">
+    <p class="s-num">// Onde estou</p>
+    <h2 class="s-title">RECIFE<br/><span class="r">& BH.</span></h2>
+  </div>
+  <div class="city-slider-wrap">
+    <!-- SLIDE 1 — RECIFE -->
+    <div class="city-slide active">
+      <img src="images/recife.jpg" alt="Recife"/>
+      <div class="city-overlay">
+        <div>
+          <span class="city-tag">// onde moro · onde estudo</span>
+          <h3 class="city-name">RECIFE<span class="r">/PE</span></h3>
+          <p class="city-desc">Nasci e cresci aqui. Curso ADS no SENAC pelo <strong style="color:#f0f0f0">Embarque Digital</strong> — um programa enraizado na cena tech do Recife e do Porto Digital.</p>
+        </div>
+      </div>
+    </div>
+    <!-- SLIDE 2 — BH -->
+    <div class="city-slide">
+      <img src="images/bh.jpg" alt="Belo Horizonte"/>
+      <div class="city-overlay">
+        <div>
+          <span class="city-tag">// onde trabalho · remoto</span>
+          <h3 class="city-name">BELO<br/><span class="r">HORIZONTE</span></h3>
+          <p class="city-desc">A <strong style="color:#f0f0f0">Agência Castelo</strong> é mineira. Trabalho 100% remoto conectando Recife a BH — tecnologia não tem CEP.</p>
+        </div>
+      </div>
+    </div>
+    <!-- CONTROLES -->
+    <button class="slide-btn slide-prev" aria-label="Anterior">←</button>
+    <button class="slide-btn slide-next" aria-label="Próximo">→</button>
+    <div class="slide-dots">
+      <span class="slide-dot active"></span>
+      <span class="slide-dot"></span>
     </div>
   </div>
 </section>
@@ -1100,6 +1203,25 @@ const certObs=new IntersectionObserver(es=>es.forEach(e=>{
   else document.querySelectorAll('.citem').forEach(c=>c.classList.remove('in'));
 }),{threshold:.05});
 const cf=document.querySelector('.cert-flow'); if(cf) certObs.observe(cf);
+
+/* ── CITY SLIDER ── */
+const citySlides = document.querySelectorAll('.city-slide');
+const cityDots   = document.querySelectorAll('.slide-dot');
+let curSlide = 0, slideTimer;
+
+function goToSlide(n) {
+  citySlides[curSlide].classList.remove('active');
+  cityDots[curSlide].classList.remove('active');
+  curSlide = (n + citySlides.length) % citySlides.length;
+  citySlides[curSlide].classList.add('active');
+  cityDots[curSlide].classList.add('active');
+}
+function resetTimer() { clearInterval(slideTimer); slideTimer = setInterval(() => goToSlide(curSlide + 1), 4000); }
+
+document.querySelector('.slide-prev').addEventListener('click', () => { goToSlide(curSlide - 1); resetTimer(); });
+document.querySelector('.slide-next').addEventListener('click', () => { goToSlide(curSlide + 1); resetTimer(); });
+cityDots.forEach((d, i) => d.addEventListener('click', () => { goToSlide(i); resetTimer(); }));
+resetTimer();
 
 /* ── SCRAMBLE ON HERO VISIBLE ── */
 const heroObs=new IntersectionObserver(es=>es.forEach(e=>{
