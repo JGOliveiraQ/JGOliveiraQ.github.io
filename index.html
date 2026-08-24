@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>João Guilherme — Dev & TI</title>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=()"/>
+  <title>João Guilherme — Desenvolvedor em formação</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
@@ -833,6 +835,32 @@
     a, button, [role="button"], .mag-btn, .slide-btn, .slide-dot, .clink, .ham {
       cursor: url('./assets/cursor-hover.png') 14 2, pointer;
     }
+
+    /* ─── REFINO VISUAL: PORTFÓLIO PESSOAL ─── */
+    body::after { opacity: .015; }
+    nav {
+      padding: 1.1rem 3rem;
+      background: linear-gradient(to bottom, rgba(8,10,18,.82), transparent);
+      backdrop-filter: blur(8px);
+      mix-blend-mode: normal;
+    }
+    .hero-name { font-size: clamp(3.2rem, 7.2vw, 7.5rem); letter-spacing: -.045em; line-height: .94; }
+    .hero-name.glitch::before, .hero-name.glitch::after { display: none; }
+    .hero-sub { font-family: var(--body); color: #b5b4bd; line-height: 1.7; max-width: 380px; }
+    #cur-blink { display: none; }
+    #zoom-hud { display: none !important; }
+    .zoom-mode nav, .zoom-mode #hero, .zoom-mode .hero-scroll-indicator { opacity: 1 !important; pointer-events: auto; }
+    .sobre-inner { grid-template-columns: minmax(0, 760px); }
+    .code-wrap { display: none; }
+    .about-body { max-width: 720px; }
+    .mag-btn, .clink { border-radius: 2px; }
+    .availability-note {
+      margin-top: 2.4rem; max-width: 620px; padding: 1.3rem 1.5rem;
+      border-left: 2px solid var(--red2); background: rgba(10,11,18,.28);
+      color: #bdbbc4; line-height: 1.7;
+    }
+    .availability-note strong { color: var(--white); }
+    a, button, [role="button"], .mag-btn, .clink, .ham { cursor: pointer; }
   </style>
 </head>
 <body>
@@ -896,18 +924,16 @@
 <!-- ─── HERO ─── -->
 <section id="hero">
   <div class="hero-name-wrap">
-    <div class="hero-name glitch" data-text="JOÃO">JOÃO</div>
+    <div class="hero-name">JOÃO</div>
   </div>
   <div class="hero-name-wrap">
     <div class="hero-name hero-red">GUILHERME</div>
   </div>
   <div class="hero-name-wrap">
-    <div class="hero-name glitch" data-text="OLIVEIRA">OLIVEIRA</div>
+    <div class="hero-name">OLIVEIRA</div>
   </div>
   <div class="hero-bottom">
-    <div class="hero-sub">
-      <span class="tw" id="tw"></span><span id="cur-blink"></span>
-    </div>
+    <p class="hero-sub">Desenvolvimento web, automações e aprendizado contínuo — Recife/PE.</p>
     <div class="hero-cta">
       <a href="#contato" class="mag-btn mag-btn-fill shake-hover">Me Contrate</a>
       <a href="#projetos" class="mag-btn mag-btn-ghost shake-hover">Projetos</a>
@@ -928,17 +954,16 @@
       <p class="s-num">// 01 — Sobre mim</p>
       <h2 class="s-title">QUEM<br/>SOU<br/><span class="r">EU</span></h2>
       <p class="about-body">
-        Tenho 19 anos, sou de <strong>Recife/PE</strong> e estou cursando <strong>ADS no SENAC</strong>
-        pelo Programa Embarque Digital e <strong>Administração</strong> na Faculdade Ouro Moderno.
-        Sempre fui apaixonado pela tecnologia e gosto de aprender coisas novas.
-        Amo conversar e trabalhar em equipe.
+        Tenho 19 anos, sou de <strong>Recife/PE</strong> e curso <strong>ADS no SENAC</strong> pelo Programa Embarque Digital.
+        Gosto de transformar problemas do dia a dia em soluções digitais claras, úteis e bem pensadas.
       </p>
       <p class="about-body">
-        Atualmente estagiando como <strong>TI na Agência Castelo</strong> — automações, sistemas e soluções digitais.
-        Interesse em <strong>IA Aplicada</strong>, <strong>DevOps</strong> e <strong>Cybersecurity</strong>.
+        Estou <strong>aberto a novas oportunidades</strong> para aprender, colaborar e contribuir com desenvolvimento web,
+        automações e produtos digitais. Procuro um time em que eu possa assumir responsabilidades e evoluir na prática.
       </p>
+      <p class="availability-note"><strong>Disponível para estágio ou posição júnior</strong> em Recife ou remoto, com foco em desenvolvimento web e automações.</p>
       <div class="about-grid">
-        <div class="ag-cell"><div class="ag-n" data-target="10">0</div><div class="ag-l">CERTIFICAÇÕES</div></div>
+        <div class="ag-cell"><div class="ag-n" data-target="12">0</div><div class="ag-l">CERTIFICAÇÕES</div></div>
         <div class="ag-cell"><div class="ag-n" data-target="2">0</div><div class="ag-l">CURSOS ATIVOS</div></div>
         <div class="ag-cell"><div class="ag-n" data-target="5">0</div><div class="ag-l">TECHS CORE</div></div>
         <div class="ag-cell"><div class="ag-n" data-target="1">0</div><div class="ag-l">ANO DE XP</div></div>
@@ -1032,21 +1057,8 @@
     <h2 class="s-title">EXPERIÊNCIA<br/><span class="r">PROFISSIONAL</span></h2>
   </div>
   <div class="exp-list">
-    <div class="exp-row reveal-left">
+    <div class="exp-row reveal-left" style="border-bottom: 1px solid var(--line);">
       <div class="exp-n">01</div>
-      <div>
-        <div class="exp-co">AGÊNCIA CASTELO</div>
-        <div class="exp-role">Dev. Software Junior · Analista em Tráfego Pago</div>
-        <ul class="exp-items">
-          <li>Suporte técnico e manutenção de sistemas internos</li>
-          <li>Desenvolvimento de soluções digitais e automações</li>
-          <li>Manipulação de bancos de dados e otimização de processos</li>
-        </ul>
-      </div>
-      <div class="exp-date exp-active"><span class="pulse"></span>MAR/26 — ATUAL</div>
-    </div>
-    <div class="exp-row reveal-right d2" style="border-bottom: 1px solid var(--line);">
-      <div class="exp-n">02</div>
       <div>
         <div class="exp-co">McDONALD'S</div>
         <div class="exp-role">Atendente de Restaurante</div>
@@ -1080,16 +1092,6 @@
       </div>
       <div class="exp-date exp-active"><span class="pulse"></span>JUN/25 — MAR/27</div>
     </div>
-    <div class="exp-row reveal-right d2" style="border-bottom: 1px solid var(--line);">
-      <div class="exp-n">02</div>
-      <div>
-        <div class="exp-co">FACULDADE OURO MODERNO</div>
-        <div class="exp-role">Bacharelado em Administração</div>
-        <ul class="exp-items">
-          <li>Gestão, estratégia de negócios e liderança</li>
-          <li>Previsão de conclusão: fev/2027</li>
-        </ul>
-      </div>
       <div class="exp-date exp-active"><span class="pulse"></span>FEV/26 — FEV/27</div>
     </div>
   </div>
@@ -1114,7 +1116,7 @@
       <div class="pcard-glow"></div>
       <div class="pcard-num">02</div>
       <div class="pcard-title">Automações TI</div>
-      <div class="pcard-desc">Scripts e soluções automatizadas na Agência Castelo — manipulação de banco de dados, processos digitais e integrações.</div>
+      <div class="pcard-desc">Laboratórios de automação com scripts, manipulação de dados e pequenas integrações para resolver tarefas repetitivas.</div>
       <div class="pcard-tags"><span class="ptag">Python</span><span class="ptag">SQL</span><span class="ptag">Automação</span></div>
     </div>
     <div class="pcard reveal-right d3">
@@ -1191,38 +1193,6 @@ function closeMenu() {
   document.body.style.overflow = '';
 }
 
-/* ── TEXT SCRAMBLE ── */
-const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*';
-function scramble(el,final,dur=1200){
-  let start=null, len=final.length;
-  function step(ts){
-    if(!start) start=ts;
-    const prog=Math.min((ts-start)/dur,1);
-    const revealed=Math.floor(prog*len);
-    let out='';
-    for(let i=0;i<len;i++){
-      if(i<revealed) out+=final[i];
-      else out+=chars[Math.floor(Math.random()*chars.length)];
-    }
-    el.textContent=out;
-    if(prog<1) requestAnimationFrame(step);
-    else el.textContent=final;
-  }
-  requestAnimationFrame(step);
-}
-
-/* ── TYPEWRITER ── */
-const phrases=['ESTAGIÁRIO DE TI @ AGÊNCIA CASTELO','ESTUDANTE DE ADS · EMBARQUE DIGITAL','PYTHON · JAVASCRIPT · SQL','IA · DEVOPS · CYBERSECURITY','ABERTO A OPORTUNIDADES'];
-let pi=0,ci=0,del=false;
-const twEl=document.getElementById('tw');
-function type(){
-  const p=phrases[pi];
-  if(!del){ twEl.textContent=p.slice(0,++ci); if(ci===p.length){del=true;setTimeout(type,2500);return;} }
-  else{ twEl.textContent=p.slice(0,--ci); if(ci===0){del=false;pi=(pi+1)%phrases.length;} }
-  setTimeout(type,del?28:60);
-}
-type();
-
 /* ── MAGNETIC BUTTONS ── */
 document.querySelectorAll('.mag-btn').forEach(btn=>{
   btn.addEventListener('mousemove',e=>{
@@ -1281,15 +1251,7 @@ const certObs=new IntersectionObserver(es=>es.forEach(e=>{
 }),{threshold:.05});
 const cf=document.querySelector('.cert-flow'); if(cf) certObs.observe(cf);
 
- /* ── SCRAMBLE ON HERO VISIBLE ── */
-const heroObs=new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){
-    setTimeout(()=>scramble(document.querySelector('.s-num'),'// 01 — Sobre mim',900),400);
-  }
-}),{threshold:.5});
-const aboutSec=document.getElementById('sobre'); if(aboutSec) heroObs.observe(aboutSec);
-
-</script>
+ </script>
 
 <script type="importmap">
 {
@@ -1317,8 +1279,8 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 /* ── Scene ── */
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x050508);
-scene.fog = new THREE.FogExp2(0x080810, 0.022);
+scene.background = new THREE.Color(0x080a12);
+scene.fog = new THREE.FogExp2(0x080a12, 0.012);
 
 /* ── Environment map ── */
 const pmrem = new THREE.PMREMGenerator(renderer);
@@ -1326,7 +1288,7 @@ pmrem.compileEquirectangularShader();
 scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
 /* ── Camera ── */
-const cam = new THREE.PerspectiveCamera(80, innerWidth / innerHeight, 0.1, 500);
+const cam = new THREE.PerspectiveCamera(62, innerWidth / innerHeight, 0.1, 500);
 cam.position.set(0, 2, 2);
 cam.lookAt(0, 1.5, 0);
 
@@ -1378,7 +1340,7 @@ new GLTFLoader().load('./assets/island.glb',
     const box = new THREE.Box3().setFromObject(island);
     const center = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3());
-    const s = 11 / Math.max(size.x, size.y, size.z);
+    const s = 7.5 / Math.max(size.x, size.y, size.z);
     island.scale.setScalar(s);
     island.position.sub(center.multiplyScalar(s));
     island.rotation.y = Math.PI * 0.25;
@@ -1416,7 +1378,7 @@ new GLTFLoader().load('./assets/island.glb',
 );
 
 /* ── Camera: órbita horizontal + mouse parallax vertical ── */
-const BASE_RADIUS = 0.72;
+const BASE_RADIUS = 8;
 const ZOOM_RADIUS = 0.42;
 let dynamicRadius = BASE_RADIUS;
 let dynamicHeight = 0;
@@ -1429,25 +1391,6 @@ const hudDist = document.getElementById('hudDist');
 const sfxHold = new Audio('https://ameen-abdullah.dev/audios/sfx/hold.ogg');
 sfxHold.volume = 0.7;
 
-document.addEventListener('mousedown', e => {
-  if (e.target.closest('a, button, input')) return;
-  zoomActive = true;
-  holdStart = Date.now();
-  zoomHud.classList.add('active');
-  canvas.style.filter = 'saturate(1.5) brightness(1.12) contrast(1.06)';
-  document.body.classList.add('zoom-mode');
-  setTimeout(() => { sfxHold.currentTime = 0; sfxHold.play().catch(() => {}); }, 120);
-});
-document.addEventListener('mouseup', () => {
-  zoomActive = false;
-  holdStart = null;
-  zoomHud.classList.remove('active');
-  canvas.style.filter = '';
-  hudDist.textContent = 'DIST: —';
-  document.body.classList.remove('zoom-mode');
-  sfxHold.pause();
-  sfxHold.currentTime = 0;
-});
 
 let orbitAngle = 0;
 let orbitTarget = 0;
@@ -1512,17 +1455,6 @@ document.getElementById('ld-enter')?.addEventListener('click', () => {
   amb.play().catch(() => {});
 });
 
-/* ── Hover sound ── */
-(function () {
-  const sfxHov = new Audio('https://ameen-abdullah.dev/audios/sfx/chime2.ogg');
-  sfxHov.volume = 0.8;
-  document.querySelectorAll('a, button, .mag-btn, .pcard, .citem, .exp-row').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      sfxHov.currentTime = 0;
-      sfxHov.play().catch(() => {});
-    });
-  });
-})();
 </script>
 </body>
 </html>
