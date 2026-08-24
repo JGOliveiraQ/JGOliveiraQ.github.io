@@ -926,6 +926,45 @@
         padding-right: max(4.5rem, calc((100vw - 1520px) / 2));
       }
     }
+
+    /* ─── AJUSTES DE ALINHAMENTO E CARREGAMENTO ─── */
+    #formacao {
+      box-sizing: border-box;
+      padding-left: clamp(1.25rem, 4vw, 4.5rem);
+      padding-right: clamp(1.25rem, 4vw, 4.5rem);
+    }
+    #formacao > .reveal, #formacao > .exp-list {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    #formacao .exp-row { width: 100%; }
+    .exp-date, .exp-active { color: var(--white) !important; }
+    .pulse { background: var(--white); }
+
+    #loader { gap: .9rem; padding: 1.5rem; }
+    .ld-logo {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      letter-spacing: .18em; text-align: center;
+      padding-left: .18em;
+    }
+    .ld-bar {
+      width: min(280px, calc(100vw - 72px));
+      height: 3px; border-radius: 999px; overflow: hidden;
+      background: rgba(255,255,255,.18);
+    }
+    .ld-fill {
+      background: linear-gradient(90deg, var(--red), var(--red2));
+      box-shadow: 0 0 12px rgba(155,77,255,.8);
+    }
+    .ld-text {
+      min-height: 1em; color: var(--white); text-align: center;
+      font-size: .64rem; letter-spacing: .14em;
+    }
+    #ld-enter {
+      border-radius: 2px; padding: .75rem 1.6rem;
+      letter-spacing: .18em; font-size: .68rem; margin-top: .35rem;
+    }
   </style>
 </head>
 <body>
@@ -935,7 +974,7 @@
 
 <!-- Loader -->
 <div id="loader">
-  <div class="ld-logo">JG<span>.</span>OLIVEIRA</div>
+  <div class="ld-logo">JGOLIVEIRAQ</div>
   <div class="ld-bar"><div class="ld-fill" id="ldFill"></div></div>
   <div class="ld-text" id="ldTxt">INICIALIZANDO...</div>
   <button id="ld-enter">ENTRAR →</button>
@@ -996,10 +1035,7 @@
   </div>
   <div class="hero-bottom">
     <p class="hero-sub">Desenvolvimento web, automações e aprendizado contínuo — Recife/PE.</p>
-    <div class="hero-cta">
-      <a href="#contato" class="mag-btn mag-btn-fill shake-hover">Me Contrate</a>
-      <a href="#projetos" class="mag-btn mag-btn-ghost shake-hover">Projetos</a>
-    </div>
+    
   </div>
   <div class="hero-scroll-indicator">
     <span class="scroll-label">SCROLL</span>
