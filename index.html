@@ -867,6 +867,65 @@
     .hero-sub, .about-body, .availability-note, .pcard-desc, .spct,
     .exp-role, .exp-items li, .exp-date, .city-desc, .clink,
     .availability-card p, footer { color: var(--white); }
+
+    /* ─── ESCALA FLUIDA E RESPONSIVIDADE ─── */
+    #hero {
+      min-height: min(100svh, 900px);
+      padding: clamp(6rem, 10vw, 8rem) clamp(1.25rem, 4vw, 4.5rem) clamp(3rem, 6vw, 5rem);
+    }
+    .hero-name {
+      font-size: clamp(2.4rem, 4.8vw, 5.8rem);
+      letter-spacing: -.04em;
+      line-height: .96;
+    }
+    .hero-bottom { margin-top: clamp(1.8rem, 4vw, 3rem); }
+    .s-title { font-size: clamp(2rem, 4.3vw, 4.25rem); }
+    .contact-giant { font-size: clamp(2.8rem, 7vw, 6.4rem); }
+    .about-deco { font-size: clamp(6rem, 12vw, 12rem); }
+    .pcard-num { font-size: clamp(3.2rem, 4vw, 4.2rem); }
+    #sobre, #habilidades, #experiencia, #formacao, #projetos, #certificacoes, #contato, #localidade {
+      padding-inline: clamp(1.25rem, 4vw, 4.5rem);
+      padding-block: clamp(4rem, 8vw, 7rem);
+    }
+    .city-slider-wrap { height: clamp(340px, 43vw, 520px); }
+    .skills-cats { grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+    .proj-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+
+    @media (max-width: 980px) {
+      nav { padding-inline: clamp(1.1rem, 3vw, 2rem); }
+      .nav-links { display: none; }
+      .ham { display: flex; }
+      .mobile-menu { background: rgba(5,5,8,.98); }
+      .city-slider-wrap { height: clamp(330px, 55vw, 460px); }
+    }
+
+    @media (min-width: 601px) and (max-width: 780px) {
+      .exp-row { grid-template-columns: 48px 1fr; gap: 1rem; }
+      .exp-date { grid-column: 2; text-align: left; padding-top: 0; }
+      .cert-flow { column-count: 2; }
+    }
+
+    @media (max-width: 600px) {
+      #hero { min-height: 100svh; padding: 5.5rem 1.2rem 2.5rem; }
+      .hero-name { font-size: clamp(2.35rem, 11vw, 3.25rem); line-height: .98; }
+      .s-title { font-size: clamp(1.85rem, 8.2vw, 2.55rem); }
+      .contact-giant { font-size: clamp(2.5rem, 12vw, 3.6rem); }
+      .city-slider-wrap { height: 330px; }
+      .city-overlay { padding: 1.25rem; }
+      .hero-scroll-indicator { bottom: 1.1rem; }
+    }
+
+    @media (max-height: 760px) and (min-width: 601px) {
+      #hero { min-height: 700px; padding-top: 5.5rem; padding-bottom: 3rem; }
+      .hero-scroll-indicator { bottom: 1.2rem; }
+    }
+
+    @media (min-width: 1600px) {
+      #hero, #sobre, #habilidades, #experiencia, #formacao, #projetos, #certificacoes, #contato, #localidade {
+        padding-left: max(4.5rem, calc((100vw - 1520px) / 2));
+        padding-right: max(4.5rem, calc((100vw - 1520px) / 2));
+      }
+    }
   </style>
 </head>
 <body>
