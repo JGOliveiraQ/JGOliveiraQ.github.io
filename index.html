@@ -465,7 +465,7 @@
     .pcard:hover { border-color: var(--red); }
     .pcard-glow {
       position: absolute; inset: 0; opacity: 0;
-      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(184,0,16,.12), transparent 60%);
+      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(155,77,255,.18), transparent 60%);
       transition: opacity .3s; pointer-events: none;
     }
     .pcard:hover .pcard-glow { opacity: 1; }
@@ -861,6 +861,12 @@
     }
     .availability-note strong { color: var(--white); }
     a, button, [role="button"], .mag-btn, .clink, .ham { cursor: pointer; }
+
+    /* ─── LEGIBILIDADE ─── */
+    :root { --dim: var(--white); }
+    .hero-sub, .about-body, .availability-note, .pcard-desc, .spct,
+    .exp-role, .exp-items li, .exp-date, .city-desc, .clink,
+    .availability-card p, footer { color: var(--white); }
   </style>
 </head>
 <body>
@@ -882,7 +888,7 @@
   <div class="hud-corner hud-tr"></div>
   <div class="hud-corner hud-bl"></div>
   <div class="hud-corner hud-br"></div>
-  <div class="hud-label hud-label-tl">JG.OLIVEIRA // SURFACE SCAN</div>
+  <div class="hud-label hud-label-tl">JGOLIVEIRAQ // SURFACE SCAN</div>
   <div class="hud-label hud-label-tr" id="hudDist">DIST: —</div>
   <div class="hud-label hud-label-bl">FOV: 80° // ORBIT MODE</div>
   <div class="hud-label hud-label-br">SOLTE PARA SAIR</div>
@@ -895,7 +901,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">JG<em>.</em>OLIVEIRA</div>
+  <div class="nav-logo">JGOLIVEIRAQ</div>
   <ul class="nav-links">
     <li><a href="#sobre" data-label="Sobre"><span>Sobre</span></a></li>
     <li><a href="#habilidades" data-label="Skills"><span>Skills</span></a></li>
@@ -928,9 +934,6 @@
   </div>
   <div class="hero-name-wrap">
     <div class="hero-name hero-red">GUILHERME</div>
-  </div>
-  <div class="hero-name-wrap">
-    <div class="hero-name">OLIVEIRA</div>
   </div>
   <div class="hero-bottom">
     <p class="hero-sub">Desenvolvimento web, automações e aprendizado contínuo — Recife/PE.</p>
