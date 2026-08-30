@@ -264,60 +264,63 @@
     /* ─── DIVIDER ─── */
     hr { border: none; border-top: 1px solid var(--line); }
 
-    /* ─── LOCALIDADE SLIDER ─── */
+    /* ─── CURIOSIDADES ─── */
     #localidade { padding: 9rem 3rem; }
     .city-slider-wrap {
-      position: relative; overflow: hidden; margin-top: 4rem;
-      height: 620px; border: 1px solid var(--line);
-      border-radius: 16px;
+      position: relative; overflow: hidden; margin-top: 3rem;
+      height: clamp(380px, 48vw, 600px);
+      border: 1px solid var(--line); border-radius: 12px;
+      background: #090912;
     }
     .city-slide {
-      position: absolute; inset: 0;
-      opacity: 0; transition: opacity .7s ease; pointer-events: none;
+      position: absolute; inset: 0; opacity: 0;
+      transition: opacity .55s ease; pointer-events: none;
     }
-    .city-slide.active { opacity: 1; pointer-events: all; }
+    .city-slide.active { opacity: 1; pointer-events: auto; }
     .city-slide img {
-      width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.65);
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: brightness(.68) saturate(.94);
     }
     .city-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(8,8,8,.92) 0%, rgba(8,8,8,.15) 55%, transparent 100%);
-      display: flex; align-items: flex-end; padding: 3rem;
+      background: linear-gradient(90deg, rgba(5,5,8,.9) 0%, rgba(5,5,8,.42) 48%, rgba(5,5,8,.08) 100%),
+                  linear-gradient(to top, rgba(5,5,8,.78), transparent 58%);
+      display: flex; align-items: flex-end; padding: clamp(1.5rem, 4vw, 3.5rem);
     }
+    .city-content { max-width: min(560px, 78%); }
     .city-tag {
-      font-family: var(--mono); font-size: .63rem; letter-spacing: .22em;
-      color: var(--red); text-transform: uppercase; display: block; margin-bottom: .55rem;
+      font-family: var(--mono); font-size: .68rem; letter-spacing: .17em;
+      color: var(--red2); text-transform: uppercase; display: block; margin-bottom: .65rem;
     }
     .city-name {
       font-family: var(--syne); font-weight: 800;
-      font-size: clamp(2rem, 4.5vw, 4rem);
-      letter-spacing: -.02em; line-height: .9; margin-bottom: 1rem;
+      font-size: clamp(2rem, 4.2vw, 4.4rem);
+      letter-spacing: -.04em; line-height: .95; margin-bottom: .85rem;
     }
-    .city-name .r { color: var(--red); }
     .city-desc {
-      font-family: var(--body); font-size: clamp(.82rem, 1.1vw, .94rem);
-      color: #bbb; line-height: 1.85; max-width: 500px;
+      font-size: clamp(.86rem, 1.15vw, 1rem);
+      color: var(--white); line-height: 1.75; max-width: 520px;
     }
     .slide-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(8,8,8,.75); border: 1px solid var(--line);
-      color: var(--white); font-family: var(--mono); font-size: 1rem;
-      padding: .85rem 1.3rem; cursor: pointer; z-index: 10;
-      transition: background .2s, border-color .2s; line-height: 1;
-      border-radius: 8px;
+      width: 46px; height: 46px; display: grid; place-items: center;
+      background: rgba(5,5,8,.64); border: 1px solid rgba(255,255,255,.45);
+      color: var(--white); font-size: 1.2rem; cursor: pointer; z-index: 3;
+      transition: background .2s, border-color .2s, transform .2s;
     }
-    .slide-btn:hover { background: var(--red); border-color: var(--red); }
-    .slide-prev { left: 1.5rem; }
-    .slide-next { right: 1.5rem; }
+    .slide-btn:hover { background: var(--red); border-color: var(--red); transform: translateY(-50%) scale(1.05); }
+    .slide-prev { left: clamp(.7rem, 2vw, 1.5rem); }
+    .slide-next { right: clamp(.7rem, 2vw, 1.5rem); }
     .slide-dots {
-      position: absolute; bottom: 1.6rem; left: 50%; transform: translateX(-50%);
-      display: flex; gap: .6rem; z-index: 10;
+      position: absolute; bottom: 1.35rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: .5rem; z-index: 3;
     }
     .slide-dot {
-      width: 22px; height: 2px; background: rgba(255,255,255,.2);
-      cursor: pointer; transition: background .25s, width .25s;
+      width: 7px; height: 7px; padding: 0; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.7); background: transparent; cursor: pointer;
+      transition: background .2s, transform .2s;
     }
-    .slide-dot.active { background: var(--red); width: 36px; }
+    .slide-dot.active { background: var(--red2); border-color: var(--red2); transform: scale(1.25); }
 
     /* ─── SOBRE ─── */
     #sobre { padding: 9rem 3rem; }
@@ -982,6 +985,21 @@
         word-break: normal;
       }
     }
+
+    /* Galeria de curiosidades em telas pequenas */
+    @media (max-width: 600px) {
+      #localidade { padding: 3.5rem 1.2rem; }
+      #localidade .city-slider-wrap { height: 390px; margin-top: 1.8rem; }
+      #localidade .city-overlay {
+        padding: 1.25rem;
+        background: linear-gradient(to top, rgba(5,5,8,.92) 0%, rgba(5,5,8,.18) 70%);
+      }
+      #localidade .city-content { max-width: calc(100% - 2.25rem); }
+      #localidade .city-name { font-size: 1.85rem; }
+      #localidade .city-desc { font-size: .82rem; line-height: 1.6; }
+      #localidade .slide-btn { width: 38px; height: 38px; }
+      #localidade .slide-dots { bottom: .8rem; }
+    }
   </style>
 </head>
 <body>
@@ -1089,22 +1107,71 @@
 </section>
 <hr/>
 
-<!-- ─── LOCALIDADE ─── -->
-<section id="localidade">
+<!-- ─── CURIOSIDADES ─── -->
+<section id="localidade" aria-labelledby="curiosidades-title">
   <div class="reveal">
-    <h2 class="s-title">RECIFE<span class="r">/PE</span></h2>
+    <h2 id="curiosidades-title" class="s-title">CURIOSIDADES</h2>
   </div>
-  <div class="city-slider-wrap">
-    <!-- SLIDE 1 — RECIFE -->
-    <div class="city-slide active">
-      <img src="images/recife.jpg" alt="Recife"/>
-      <div class="city-overlay">
-        <div>
-          <p class="city-desc">Nasci e cresci aqui. Curso ADS no SENAC pelo <strong style="color:#f0f0f0">Embarque Digital</strong> — um programa enraizado na cena tech do Recife e do Porto Digital.</p>
-        </div>
-      </div>
+  <div class="city-slider-wrap" aria-label="Galeria de curiosidades">
+    <article class="city-slide active">
+      <img src="images/curiosidades/recife-porto.jpg" alt="Vista aérea do Recife Antigo e do litoral" fetchpriority="high"/>
+      <div class="city-overlay"><div class="city-content">
+        <span class="city-tag">Recife</span>
+        <h3 class="city-name">Meu lugar no mundo</h3>
+        <p class="city-desc">Foi aqui que cresci — uma cidade cheia de encontros, história, mar e novas ideias.</p>
+      </div></div>
+    </article>
+    <article class="city-slide">
+      <img src="images/curiosidades/recife-cultura.jpeg" alt="Ruas coloridas de Recife com sombrinhas decorativas" loading="lazy"/>
+      <div class="city-overlay"><div class="city-content">
+        <span class="city-tag">Recife</span>
+        <h3 class="city-name">Cores e cultura</h3>
+        <p class="city-desc">Entre ruas antigas, música e movimento, Recife é uma parte importante de quem eu sou.</p>
+      </div></div>
+    </article>
+    <article class="city-slide">
+      <img src="images/curiosidades/sport-torcida.jpg" alt="Torcida do Sport Club do Recife em dia de jogo" loading="lazy"/>
+      <div class="city-overlay"><div class="city-content">
+        <span class="city-tag">Sport Club do Recife</span>
+        <h3 class="city-name">Pernambuco tem dono</h3>
+        <p class="city-desc">A energia da torcida e o orgulho de torcer pelo Leão fazem parte das minhas paixões.</p>
+      </div></div>
+    </article>
+    <article class="city-slide">
+      <img src="images/curiosidades/sport-time.jpg" alt="Elenco do Sport Club do Recife reunido antes de uma partida" loading="lazy"/>
+      <div class="city-overlay"><div class="city-content">
+        <span class="city-tag">Sport Club do Recife</span>
+        <h3 class="city-name">Dia de jogo</h3>
+        <p class="city-desc">Torcer é acompanhar cada fase, celebrar as vitórias e continuar junto em todos os momentos.</p>
+      </div></div>
+    </article>
+    <article class="city-slide">
+      <img src="images/curiosidades/beastars-elenco.jpg" alt="Personagens principais do anime Beastars" loading="lazy"/>
+      <div class="city-overlay"><div class="city-content">
+        <span class="city-tag">Anime favorito</span>
+        <h3 class="city-name">Beastars</h3>
+        <p class="city-desc">Um dos meus animes favoritos pela animação, pelos personagens e pelas histórias cheias de camadas.</p>
+      </div></div>
+    </article>
+    <article class="city-slide">
+      <img src="images/curiosidades/beastars-legoshi-haru.jpg" alt="Legoshi e Haru, personagens de Beastars" loading="lazy"/>
+      <div class="city-overlay"><div class="city-content">
+        <span class="city-tag">Beastars</span>
+        <h3 class="city-name">Legoshi e Haru</h3>
+        <p class="city-desc">A relação entre os personagens e os temas da série tornam Beastars uma história que ficou comigo.</p>
+      </div></div>
+    </article>
+    <button type="button" class="slide-btn slide-prev" aria-label="Foto anterior">←</button>
+    <button type="button" class="slide-btn slide-next" aria-label="Próxima foto">→</button>
+    <div class="slide-dots" aria-label="Selecionar foto">
+      <button type="button" class="slide-dot active" aria-label="Foto 1" aria-current="true"></button>
+      <button type="button" class="slide-dot" aria-label="Foto 2"></button>
+      <button type="button" class="slide-dot" aria-label="Foto 3"></button>
+      <button type="button" class="slide-dot" aria-label="Foto 4"></button>
+      <button type="button" class="slide-dot" aria-label="Foto 5"></button>
+      <button type="button" class="slide-dot" aria-label="Foto 6"></button>
     </div>
-    </div>
+  </div>
 </section>
 <hr/>
 
@@ -1363,6 +1430,38 @@ const certObs=new IntersectionObserver(es=>es.forEach(e=>{
   else document.querySelectorAll('.citem').forEach(c=>c.classList.remove('in'));
 }),{threshold:.05});
 const cf=document.querySelector('.cert-flow'); if(cf) certObs.observe(cf);
+
+/* ── GALERIA DE CURIOSIDADES ── */
+const curiosityGallery = document.querySelector('#localidade .city-slider-wrap');
+if (curiosityGallery) {
+  const slides = [...curiosityGallery.querySelectorAll('.city-slide')];
+  const dots = [...curiosityGallery.querySelectorAll('.slide-dot')];
+  const prevButton = curiosityGallery.querySelector('.slide-prev');
+  const nextButton = curiosityGallery.querySelector('.slide-next');
+  let currentSlide = 0;
+  let slideTimer;
+
+  function showSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === currentSlide));
+    dots.forEach((dot, i) => {
+      const isCurrent = i === currentSlide;
+      dot.classList.toggle('active', isCurrent);
+      dot.setAttribute('aria-current', String(isCurrent));
+    });
+  }
+  function resetTimer() {
+    window.clearInterval(slideTimer);
+    slideTimer = window.setInterval(() => showSlide(currentSlide + 1), 7000);
+  }
+
+  prevButton?.addEventListener('click', () => { showSlide(currentSlide - 1); resetTimer(); });
+  nextButton?.addEventListener('click', () => { showSlide(currentSlide + 1); resetTimer(); });
+  dots.forEach((dot, index) => dot.addEventListener('click', () => { showSlide(index); resetTimer(); }));
+  curiosityGallery.addEventListener('mouseenter', () => window.clearInterval(slideTimer));
+  curiosityGallery.addEventListener('mouseleave', resetTimer);
+  resetTimer();
+}
 
  </script>
 
